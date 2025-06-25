@@ -16,7 +16,6 @@ if not GOOGLE_API_KEY:
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
-
 llm_model = genai.GenerativeModel('gemini-2.0-flash')
 
 DATA_PATH = Path("data")
