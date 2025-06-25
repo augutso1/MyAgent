@@ -192,3 +192,16 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Arquivos e pastas de ambiente e dependências
+.env
+backend/.env
+node_modules/
+venv/
+__pycache__/
+
+# Ignorar a pasta de dados do backend (onde ficam os uploads)
+backend/data/
+
+# Ignorar a pasta do banco de dados vetorial
+backend/chroma_db/
