@@ -18,7 +18,7 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 llm_model = genai.GenerativeModel('gemini-2.5-flash')
 
-DATA_PATH = Path("data")
+DATA_PATH = Path("/app/data") 
 DATA_PATH.mkdir(exist_ok=True, parents=True)
 
 #Processamento do arquivo PDF upado

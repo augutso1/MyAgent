@@ -1,18 +1,23 @@
 services:
   # Serviço do Backend (API FastAPI)
   backend:
-    build: ./backend  # Constrói a imagem usando o Dockerfile na pasta 'backend'
+    build: ./backend
     ports:
-      - "8000:8000"  # Mapeia a porta 8000 do seu PC para a porta 8000 do contêiner
+      - "8000:8000"
     volumes:
-      - ./backend/.env:/app/.env # Monta o arquivo .env para que o contêiner tenha acesso à chave da API
+      - ./backend/.env:/app/.env
+      
+      - ./backend/data:/app/data
+      
+      - ./backend/chroma_db:/app/chroma_db
+      
     container_name: myagent-backend
 
-  # Serviço do Frontend (Aplicação Next.js)
+  # Serviço do Frontend
   frontend:
-    build: ./frontend # Constrói a imagem usando o Dockerfile na pasta 'frontend'
+    build: ./frontend
     ports:
-      - "3000:3000"  # Mapeia a porta 3000 do seu PC para a porta 3000 do contêiner
+      - "3000:3000"
     depends_on:
-      - backend      # Diz ao Docker para esperar o backend iniciar antes de iniciar o frontend
+      - backend
     container_name: myagent-frontend

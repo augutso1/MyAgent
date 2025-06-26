@@ -4,7 +4,7 @@ from sentence_transformers import SentenceTransformer
 
 BACKEND_ROOT = Path(__file__).resolve().parent.parent.parent
 
-CHROMA_PATH = BACKEND_ROOT / "chroma_db"
+CHROMA_PATH = Path("/app/chroma_db") 
 CHROMA_PATH.mkdir(exist_ok=True, parents=True)
 
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
