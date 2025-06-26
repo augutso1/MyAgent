@@ -22,3 +22,16 @@ def get_vector_store():
     )
     
     return collection, embedding_function
+
+def reset_vector_store():
+    """
+    Apaga a coleção existente para garantir um início limpo.
+    """
+    print("Resetando o banco de dados vetorial...")
+    client = chromadb.PersistentClient(path=str(CHROMA_PATH))
+    
+    try:
+        client.delete_collection(name="documentos_inteligentes")
+        print("Coleção anterior apagada com sucesso.")
+    except ValueError:
+        print("Nenhuma coleção anterior para apagar.")

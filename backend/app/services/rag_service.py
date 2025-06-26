@@ -2,7 +2,7 @@ import shutil
 from pathlib import Path
 from fastapi import UploadFile
 import pypdf
-from app.storage.vector_store import get_vector_store
+from app.storage.vector_store import get_vector_store, reset_vector_store
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai
@@ -16,13 +16,15 @@ if not GOOGLE_API_KEY:
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
-llm_model = genai.GenerativeModel('gemini-2.0-flash')
+llm_model = genai.GenerativeModel('gemini-2.5-flash')
 
 DATA_PATH = Path("data")
 DATA_PATH.mkdir(exist_ok=True, parents=True)
 
 #Processamento do arquivo PDF upado
 async def process_and_index_document(file: UploadFile):
+
+    reset_vector_store()
 
     file_path = DATA_PATH / file.filename
     try:
